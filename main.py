@@ -1,18 +1,46 @@
+# import module
+import random
+
+# write file mode
+# 'w' for write
+# 'r' for read
+# 'a' for append
+sales_log = open('spam_orders.txt', 'w')
+sales_log.write('test test')
+sales_log.close()
+
 # create list
-performances = ['Ventriloquism', 'Amazing Acrobatics']
-performances.append('Snake Charmer')
-prices = [2.50, 3.50, 4.50]
-
+menu = ['Knackered Spam', 'Pip pip Spam', 'Squidgy Spam', 'Smashing Spam']
 # create dictionary
-slang = {'cheerio': 'goodbye', 'knackered': 'tired', 'yonks': 'ages'}
-
-print(slang['cheerio'])
+menu_price = {}
 
 
-def test():
+def fill_menu():
+    price = 0.5
+    for item in menu:
+        menu_price[item] = price
+        price = price + 1
+
+
+def print_menu():
+    for name, price in menu_price.items():
+        print(name, ': $', format(price, '.2f'), sep='')
+
+
+def average(prices):
+    avg = 0
+    total = 0
     for price in prices:
-        print(price)
+        total = total + price
+    avg = total/len(prices)
+    return avg
+
+
+def main():
+    fill_menu()
+    print_menu()
+    print('avg :$', format(average(menu_price.values()), '.2f'), sep='')
 
 
 if __name__ == '__main__':
-    test()
+    main()

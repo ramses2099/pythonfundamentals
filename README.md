@@ -9,3 +9,6 @@ Python extnsion
 python -m ensurepip
 python -m pip install --upgrade pip
 python.exe -m pip install -U autopep8
+
+# install modules with pip
+pip install requests
