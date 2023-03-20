@@ -1,45 +1,64 @@
-# import module
-import random
 
-# write file mode
-# 'w' for write
-# 'r' for read
-# 'a' for append
-sales_log = open('spam_orders.txt', 'w')
-sales_log.write('test test')
-sales_log.close()
+class Student:
+    def __init__(self, name, age, grade) -> None:
+        self.name = name
+        self.age = age
+        self.grade = grade
 
-# create list
-menu = ['Knackered Spam', 'Pip pip Spam', 'Squidgy Spam', 'Smashing Spam']
-# create dictionary
-menu_price = {}
+    def get_grade(self):
+        return self.grade
 
 
-def fill_menu():
-    price = 0.5
-    for item in menu:
-        menu_price[item] = price
-        price = price + 1
+class Course:
+    def __init__(self, name, max_students) -> None:
+        self.name = name
+        self.max_students = max_students
+        self.students = []
+
+    def add_student(self, student):
+        if len(self.students) < self.max_students:
+            self.students.append(student)
+            return True
+        return False
+
+    def get_average_grade(self):
+        value = 0
+        for s in self.students:
+            value += s.get_grade()
+
+        return value / len(self.students)
 
 
-def print_menu():
-    for name, price in menu_price.items():
-        print(name, ': $', format(price, '.2f'), sep='')
+class Pet:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def show(self):
+        print(f"I am {self.name} and I am {self.age} years old")
 
 
-def average(prices):
-    avg = 0
-    total = 0
-    for price in prices:
-        total = total + price
-    avg = total/len(prices)
-    return avg
+class Cat(Pet):
+    def __init__(self, name, age, color):
+        super().__init__(name, age)
+        self.color = color
+
+    def speak(self):
+        print("Meaow")
+
+    def show(self):
+        print(
+            f"I am {self.name} and I am {self.age} years old and I am {self.color}")
+
+
+class Dog(Pet):
+    def speak(self):
+        print("Bark")
 
 
 def main():
-    fill_menu()
-    print_menu()
-    print('avg :$', format(average(menu_price.values()), '.2f'), sep='')
+    c1 = Cat("Tim", 19, "red")
+    c1.show()
 
 
 if __name__ == '__main__':
